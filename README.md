@@ -19,3 +19,26 @@ Regardless of what duration the user selects using the time slider (1-60 minutes
 - React 19
 - Vite
 - CSS for animations and styling
+
+## Running Locally
+
+Follow these steps to run the project on your local machine:
+
+1. **Clone the repository**
+   ```
+   git clone https://github.com/yourusername/react-bugfix.git
+   cd react-bugfix/Copilot-react-bugfix-demo
+   ```
+
+2. **Install dependencies**
+   ```
+   npm install
+   ```
+
+3. **Start the development server**
+   ```
+   npm run dev
+   ```
+
+4. **Open your browser**
+   The application should now be running at [http://localhost:5173](http://localhost:5173)
