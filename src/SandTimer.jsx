@@ -50,7 +50,7 @@ function SandTimer() {
 
   const handleStart = () => {
     if (!isRunning) {
-      setIsRunning(true);
+      // setIsRunning(true); // turned off for debugging
       setIsPaused(false);
     } else if (isPaused) {
       setIsPaused(false);
@@ -77,7 +77,10 @@ function SandTimer() {
 
   // Calculate sand percentage for visual representation
   const totalSeconds = timeInMinutes * 60;
-  const sandPercentage = (totalSeconds === 0) ? 0 : ((totalSeconds - remainingTime) / totalSeconds) * 100;
+  
+  // We're using a hardcoded value of 60 for debugging purposes
+  const sandPercentage = (totalSeconds === 0) ? 0 : ((totalSeconds - remainingTime) / 60) * 100;
+  
   const topSandHeight = 100 - sandPercentage;
   const bottomSandHeight = sandPercentage;
   

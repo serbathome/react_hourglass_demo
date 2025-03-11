@@ -1,12 +1,21 @@
-# React + Vite
+# GitHub Copilot Bug Fixing Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project demonstrates GitHub Copilot's capabilities in identifying and fixing bugs in a React application.
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is a simple React application featuring a sand timer/hourglass component that visualizes the passage of time.
 
-## Expanding the ESLint configuration
+## Bugs Reported by Users
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Bug 1: Start Button Not Working
+Users have reported that clicking the Start button does nothing. The timer display shows the correct time, but the sand animation doesn't start and the time doesn't count down when pressing the Start button.
+
+### Bug 2: Timer Always Runs for 1 Minute Only
+Regardless of what duration the user selects using the time slider (1-60 minutes), the hourglass visualization always runs for exactly 1 minute. The selected time is displayed correctly, but the actual running time is fixed at 1 minute.
+
+## Technologies Used
+
+- React 19
+- Vite
+- CSS for animations and styling
