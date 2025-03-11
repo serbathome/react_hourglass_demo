@@ -35,6 +35,19 @@ function SandTimer() {
     };
   }, [isRunning, isPaused]);
 
+  // Reset sand state when timer completes
+  useEffect(() => {
+    // When the timer reaches zero and was previously running
+    if (remainingTime === 0 && !isRunning && !isPaused) {
+      // Add a small delay before resetting the sand to make the completion visible
+      const resetTimer = setTimeout(() => {
+        setRemainingTime(timeInMinutes * 60);
+      }, 2000); // 2 second delay
+      
+      return () => clearTimeout(resetTimer);
+    }
+  }, [remainingTime, isRunning, isPaused, timeInMinutes]);
+
   const handleStart = () => {
     if (!isRunning) {
       setIsRunning(true);
