@@ -26,8 +26,8 @@ Follow these steps to run the project on your local machine:
 
 1. **Clone the repository**
    ```
-   git clone https://github.com/yourusername/react-bugfix.git
-   cd react-bugfix/Copilot-react-bugfix-demo
+   git clone git@github.com:serbathome/react_hourglass_demo.git
+   cd react_hourglass_demo
    ```
 
 2. **Install dependencies**
