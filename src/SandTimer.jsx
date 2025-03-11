@@ -37,10 +37,7 @@ function SandTimer() {
 
   const handleStart = () => {
     if (!isRunning) {
-      // BUG #1: We're not actually updating the isRunning state here
-      // This causes the pause and stop buttons to remain disabled
-      // SOLUTION: Uncomment the line below to properly update state
-      // setIsRunning(true);
+      // setIsRunning(true); // turned off for debugging
       setIsPaused(false);
     } else if (isPaused) {
       setIsPaused(false);
@@ -68,11 +65,8 @@ function SandTimer() {
   // Calculate sand percentage for visual representation
   const totalSeconds = timeInMinutes * 60;
   
-  // BUG #2: We're ignoring the timeInMinutes value when calculating the percentages 
-  // This causes the timer to always behave as if it's set to 1 minute
-  // We're using a hardcoded value of 60 instead of totalSeconds
-  // SOLUTION: Replace 60 with totalSeconds in the line below
-  const sandPercentage = (totalSeconds === 0) ? 0 : ((60 - remainingTime) / 60) * 100;
+  // We're using a hardcoded value of 60 for debugging purposes
+  const sandPercentage = (totalSeconds === 0) ? 0 : ((totalSeconds - remainingTime) / 60) * 100;
   
   const topSandHeight = 100 - sandPercentage;
   const bottomSandHeight = sandPercentage;
