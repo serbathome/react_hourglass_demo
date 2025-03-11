@@ -12,7 +12,7 @@ This is a simple React application featuring a sand timer/hourglass component th
 Users have reported that clicking the Start button does nothing. The timer display shows the correct time, but the sand animation doesn't start and the time doesn't count down when pressing the Start button.
 
 ### Bug 2: Timer Always Runs for 1 Minute Only
-Regardless of what duration the user selects using the time slider (1-60 minutes), the hourglass always runs for exactly 1 minute. The selected time is displayed correctly, but the actual running time is fixed at 1 minute.
+Regardless of what duration the user selects using the time slider (1-60 minutes), the hourglass visualization always runs for exactly 1 minute. The selected time is displayed correctly, but the actual running time is fixed at 1 minute.
 
 ## Technologies Used
 
