@@ -63,9 +63,19 @@ function SandTimer() {
   };
 
   // Calculate sand percentage for visual representation
-  const sandPercentage = isRunning || isPaused 
-    ? (1 - remainingTime / (timeInMinutes * 60)) * 100
-    : 0;
+  const totalSeconds = timeInMinutes * 60;
+  const sandPercentage = (totalSeconds === 0) ? 0 : ((totalSeconds - remainingTime) / totalSeconds) * 100;
+  const topSandHeight = 100 - sandPercentage;
+  const bottomSandHeight = sandPercentage;
+  
+  // Calculate falling sand height based on remaining time
+  const fallingSandHeight = isRunning && !isPaused ? 30 : 0;
+  
+  // Calculate dynamic sand stream height for bottom chamber
+  // The stream should connect from the middle to the current sand level
+  const bottomChamberHeight = 100; // Height of bottom chamber in pixels
+  const gapToFill = bottomChamberHeight - (bottomSandHeight / 100 * bottomChamberHeight);
+  const streamHeight = isRunning && !isPaused ? (gapToFill > 0 ? gapToFill : 0) : 0;
 
   return (
     <div className="sand-timer">
@@ -76,16 +86,33 @@ function SandTimer() {
           <div className="top-chamber">
             <div 
               className="sand top-sand" 
-              style={{ height: `${100 - sandPercentage}%` }}
+              style={{ height: `${topSandHeight}%` }}
             ></div>
           </div>
+          
           <div className="middle-section">
             <div className="neck"></div>
+            
+            {/* Falling sand animation */}
+            {isRunning && !isPaused && (
+              <div 
+                className="falling-sand" 
+                style={{ height: `${fallingSandHeight}px` }}
+              ></div>
+            )}
           </div>
+          
           <div className="bottom-chamber">
+            {/* Sand stream falling into the bottom chamber */}
+            {isRunning && !isPaused && streamHeight > 0 && (
+              <div 
+                className="sand-stream"
+                style={{ height: `${streamHeight}px` }}
+              ></div>
+            )}
             <div 
               className="sand bottom-sand" 
-              style={{ height: `${sandPercentage}%` }}
+              style={{ height: `${bottomSandHeight}%` }}
             ></div>
           </div>
         </div>

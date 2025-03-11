@@ -13,63 +13,141 @@
   flex-direction: column;
   align-items: center;
   margin: 20px 0;
+  perspective: 600px;
 }
 
 .sandglass {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 200px;
-  width: 100px;
+  height: 240px;
+  width: 140px;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .top-chamber, .bottom-chamber {
   width: 100%;
-  height: 80px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 2px solid #444;
+  height: 100px;
+  background: rgba(220, 220, 255, 0.3);
+  border: 3px solid #666;
   position: relative;
   overflow: hidden;
+  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 .top-chamber {
-  border-radius: 50% 50% 0 0;
+  border-radius: 70% 70% 5% 5% / 100% 100% 0 0;
   display: flex;
   align-items: flex-end;
 }
 
 .bottom-chamber {
-  border-radius: 0 0 50% 50%;
+  border-radius: 5% 5% 70% 70% / 0 0 100% 100%;
 }
 
 .middle-section {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
+  position: relative;
+  z-index: 2;
 }
 
 .neck {
-  width: 20px;
-  height: 20px;
-  background-color: #444;
+  width: 30px;
+  height: 30px;
+  background-color: #666;
+  position: relative;
 }
 
+/* Glass reflections */
+.top-chamber::before, .bottom-chamber::before {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  left: 10%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+
+/* Sand styling */
 .sand {
-  background-color: sandybrown;
+  background: linear-gradient(45deg, #e6b980 0%, #eacda3 100%);
   width: 100%;
-  transition: height 1s linear;
+  transition: height 0.5s linear;
+  position: absolute;
+  bottom: 0;
+  box-shadow: inset 0 -10px 10px -10px rgba(0, 0, 0, 0.3);
 }
 
 .top-sand {
-  position: absolute;
-  bottom: 0;
+  border-radius: 35% 35% 5% 5% / 50% 50% 0 0;
 }
 
 .bottom-sand {
+  border-radius: 5% 5% 35% 35% / 0 0 50% 50%;
+}
+
+/* Falling sand animation */
+.falling-sand {
   position: absolute;
-  bottom: 0;
+  width: 4px;
+  background-color: #eacda3;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Sand stream in bottom chamber - updated to be dynamic */
+.sand-stream {
+  position: absolute;
+  width: 6px;
+  background-color: #eacda3;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: top;
+  z-index: 3;
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: height 0.5s linear;
+}
+
+/* Sand particle animation */
+@keyframes sandfall {
+  0% { 
+    opacity: 1;
+    transform: translateY(-50%) scaleY(0);
+  }
+  90% { 
+    opacity: 1;
+  }
+  100% { 
+    opacity: 0;
+    transform: translateY(50%) scaleY(1); 
+  }
+}
+
+.sand-particles {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #e6b980;
+  border-radius: 50%;
+  opacity: 0.8;
 }
 
 .time-display {
